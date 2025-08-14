@@ -1,6 +1,7 @@
 package br.com.fiap.produtos.repository;
 
 import br.com.fiap.produtos.model.Categoria;
+import br.com.fiap.produtos.model.Produto;
 
 import javax.swing.*;
 import java.util.List;
@@ -43,10 +44,8 @@ public class CategoriaCollectionRepository {
         if(!categorias.contains(categoria)){
             categoria.setId((long) categorias.size() + 1);
             categorias.add(categoria);
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Categoria cadastrada com sucesso!"
-            );
+            JOptionPane.showMessageDialog(null,
+                    "Categoria "+ categoria.getNome() +" cadastrada com sucesso!");
             return categoria;
         }else {
             JOptionPane.showMessageDialog(
@@ -56,4 +55,6 @@ public class CategoriaCollectionRepository {
             return null;
         }
     }
+
+
 }

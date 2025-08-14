@@ -1,5 +1,6 @@
 package br.com.fiap.produtos.repository;
 
+import br.com.fiap.produtos.model.Categoria;
 import br.com.fiap.produtos.model.Produto;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ProdutoCollectionRepository {
         Produto kindle = new Produto();
 
         kindle.setNome("Kindle")
+                .setId(1l)
                 .setDescricao("e-reader")
                 .setCategoria(CategoriaCollectionRepository.findByNome("Eletrônicos").get(0))
                 .setDtCadastro(LocalDateTime.now())
@@ -31,7 +33,7 @@ public class ProdutoCollectionRepository {
     }
 
     public static Produto findById(long id){
-        return produtos.stream().filter(p -> p.equals(id))
+        return produtos.stream().filter(p -> p.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
@@ -47,7 +49,7 @@ public class ProdutoCollectionRepository {
             produtos.add(produto);
             JOptionPane.showMessageDialog(
                     null,
-                    "Produto cadastrado com sucesso!"
+                    "Produto "+ produto.getNome() +" cadastrado com sucesso!"
             );
             return produto;
         }else {
@@ -57,5 +59,9 @@ public class ProdutoCollectionRepository {
             );
             return null;
         }
+    }
+
+    public static List<Produto> findByCategoria(Categoria categoria) {
+        return produtos.stream().filter(p -> p.getCategoria().equals(categoria)).toList();
     }
 }
