@@ -43,14 +43,22 @@ public class Main {
         Categoria categoria = CategoriaView.select(null);
 
         List<Produto> produtos = ProdutoCollectionRepository.findByCategoria(categoria);
-        if (produtos.isEmpty()) {
-            System.out.println("Vazio");
-            JOptionPane.showMessageDialog(null,
-                    "Não há produtos na categoria: " + categoria.getNome());
-        } else {
-            produtos.forEach(ProdutoView::show);
-            produtos.forEach(System.out::println);
+        try{
+            if (produtos.isEmpty()) {
+                System.out.println("Vazio");
+                JOptionPane.showMessageDialog(null,
+                        "Não há produtos na categoria: " + categoria.getNome());
+            } else {
+                produtos.forEach(ProdutoView::show);
+                produtos.forEach(System.out::println);
+            }
+        }catch (NullPointerException e){
+            System.out.println("Operação cancelada pelo usuário");
+            JOptionPane.showMessageDialog(null, "Operação cancelada",
+                    "Operação cancelada",
+                    JOptionPane.WARNING_MESSAGE);
         }
+
     }
 
     private static void getProdutoById() {

@@ -1,7 +1,6 @@
 package br.com.fiap.produtos.view;
 
 import br.com.fiap.produtos.model.Categoria;
-import br.com.fiap.produtos.model.Produto;
 import br.com.fiap.produtos.repository.CategoriaCollectionRepository;
 
 import javax.swing.*;
@@ -27,7 +26,7 @@ public class CategoriaView {
     }
 
     public static Categoria form(Categoria categoria){
-        String nome = null;
+        String nome;
         do {
             nome = JOptionPane.showInputDialog(null,
                     "Informe o nome da categoria: ",
